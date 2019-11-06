@@ -1,0 +1,14 @@
+{
+  "name": "ge-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/GE-MDS-FNM-V2/backend.git",
+  "author": " ",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^7.1.0"
+  },
+  "scripts": {
+    "start": "electron ."
+  }
+}
