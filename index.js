@@ -1,8 +1,12 @@
 const { app, BrowserWindow } = require("electron");
+const { PORT, EXPRESS_PORT, IN_ELECTRON_STRING } = require("./constants");
+const inProd = require("./utils/inProd");
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
+
+console.log("NODE_ENV", process.env.NODE_ENV);
 
 function createWindow() {
   // Create the browser window.
@@ -14,10 +18,16 @@ function createWindow() {
     }
   });
 
-  // and load the index.html of the app.
-  //   win.loadFile('index.html')
+  // Start our express app
+  require("./server");
 
-  win.loadURL("https://ge-fnm-v2-frontend.now.sh/?inElectron=true");
+  if (inProd()) {
+    // If we are in prod, let express host our compiled-frontend for us
+    win.loadURL(`http://localhost:${PORT}${IN_ELECTRON_STRING}`);
+  } else {
+    // If we are in dev mode, let the developer start their own react server
+    win.loadURL(`http://localhost:${EXPRESS_PORT}${IN_ELECTRON_STRING}`);
+  }
 
   // Open the DevTools.
   win.webContents.openDevTools();
@@ -52,6 +62,3 @@ app.on("activate", () => {
     createWindow();
   }
 });
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.

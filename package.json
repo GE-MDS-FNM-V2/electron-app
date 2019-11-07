@@ -9,6 +9,11 @@
     "electron": "^7.1.0"
   },
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "start:prod": "node scripts/cloneFrontend.js && yarn start"
+  },
+  "dependencies": {
+    "electron-is-dev": "^1.1.0",
+    "express": "^4.17.1"
   }
 }
