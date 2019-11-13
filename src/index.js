@@ -5,8 +5,6 @@ const isDev = require("electron-is-dev");
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
 
-console.log("NODE_ENV", process.env.NODE_ENV);
-
 function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
@@ -21,9 +19,11 @@ function createWindow() {
   require("./server");
 
   if (isDev) {
+    console.log("Staring electron app in DEVELOPMENT node")
     // If we are in dev mode, let the developer start their own react server
     win.loadURL(`http://localhost:${EXPRESS_PORT}${IN_ELECTRON_STRING}`);
   } else {
+    console.log("Staring electron app in PRODUCTION node")
     // If we are in prod, let express host our compiled-frontend for us
     win.loadURL(`http://localhost:${PORT}${IN_ELECTRON_STRING}`);
   }

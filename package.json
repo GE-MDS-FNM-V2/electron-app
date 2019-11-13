@@ -8,11 +8,12 @@
   "devDependencies": {
     "electron": "^7.1.1",
     "electron-packager": "^14.1.0",
-    "electron-rebuild": "^1.8.6"
+    "electron-rebuild": "^1.8.6",
+    "shelljs": "^0.8.3"
   },
   "scripts": {
     "build": "yarn electron-rebuild && yarn build:clone-frontend && yarn electron-packager . --asar",
-    "start": "yarn electron-rebuild && electron .",
+    "start": "electron .",
     "build:clone-frontend": "node scripts/cloneFrontend.js"
   },
   "dependencies": {
