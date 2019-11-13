@@ -27,6 +27,7 @@ app.get("/serialInfo", (req, res) => {
   let serialport = require("serialport");  
 
   serialport.list().then((ports) => {
+    console.log(ports)
     res.json(ports)
   }).catch((err) => {
     res.status(500).json(err)
