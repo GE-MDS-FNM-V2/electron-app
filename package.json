@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "yarn electron-rebuild && yarn build:clone-frontend && yarn electron-packager . --asar",
-    "start": "electron .",
+    "start": "yarn electron-rebuild && electron .",
     "build:clone-frontend": "node scripts/cloneFrontend.js"
   },
   "dependencies": {
