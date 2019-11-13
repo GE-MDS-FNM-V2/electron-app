@@ -9,6 +9,8 @@ The following should generate a folder at the roof of this repo with the name
 It will automatically build for the system you are running on (ex: if you are 
 running on mac, it will generate a .app file)
 ```
+git clone https://github.com/GE-MDS-FNM-V2/backend.git ~/Desktop/ge-backend
+cd ~/Desktop/ge-backend
 npm install -g yarn
 yarn
 yarn build
