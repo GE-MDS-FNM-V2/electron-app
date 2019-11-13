@@ -1,7 +1,6 @@
 const { app, BrowserWindow } = require("electron");
 const { PORT, EXPRESS_PORT, IN_ELECTRON_STRING } = require("./constants");
-const inProd = require("./utils/inProd");
-
+const isDev = require("electron-is-dev");
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
@@ -21,12 +20,12 @@ function createWindow() {
   // Start our express app
   require("./server");
 
-  if (inProd()) {
-    // If we are in prod, let express host our compiled-frontend for us
-    win.loadURL(`http://localhost:${PORT}${IN_ELECTRON_STRING}`);
-  } else {
+  if (isDev) {
     // If we are in dev mode, let the developer start their own react server
     win.loadURL(`http://localhost:${EXPRESS_PORT}${IN_ELECTRON_STRING}`);
+  } else {
+    // If we are in prod, let express host our compiled-frontend for us
+    win.loadURL(`http://localhost:${PORT}${IN_ELECTRON_STRING}`);
   }
 
   // Open the DevTools.

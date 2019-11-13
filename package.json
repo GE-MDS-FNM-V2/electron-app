@@ -11,7 +11,7 @@
     "electron-rebuild": "^1.8.6"
   },
   "scripts": {
-    "build": "yarn electron-rebuild && yarn build:clone-frontend && yarn electron-packager .",
+    "build": "yarn electron-rebuild && yarn build:clone-frontend && yarn electron-packager . --asar",
     "start": "yarn electron-rebuild && electron .",
     "build:clone-frontend": "node scripts/cloneFrontend.js"
   },
@@ -20,5 +20,11 @@
     "electron-is-dev": "^1.1.0",
     "express": "^4.17.1",
     "serialport": "^8.0.5"
+  },
+  "build": {
+    "files": [
+      "src/**/*",
+      "node_modules/**/*"
+    ]
   }
 }

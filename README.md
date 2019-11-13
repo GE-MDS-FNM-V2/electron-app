@@ -2,6 +2,18 @@
 This is an electron app that hosts our react front end and runs an express
 server internally.
 
+## Running/building
+### Bulding for production
+The following should generate a folder at the roof of this repo with the name
+`ge-backend-*` depending on what system you are running on. 
+It will automatically build for the system you are running on (ex: if you are 
+running on mac, it will generate a .app file)
+```
+npm install -g yarn
+yarn
+yarn build
+```
+
 ## Overview of development mode vs production mode
 ### Production
 During the production build, we will run `node.js scripts/cloneFrontend` that 
