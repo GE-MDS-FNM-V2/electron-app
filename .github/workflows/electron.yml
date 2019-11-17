@@ -12,13 +12,29 @@ jobs:
       run: yarn install
     - name: Build on MacOS
       run: yarn build
-    - uses: lucyio/upload-to-release@master
+    - name: Zip up artifacts
+      run: |
+        zip my-artifact dist/**/*
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1.0.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        name: GE-MDS-FNM-V2/backend
-        path: ./dist
-        action: unpublished
-        release_id: 0.x.x
-        release-repo: GE-MDS-FNM-V2/backend
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: ./my-artifact.zip
+        asset_name: my-artifact.zip
+        asset_content_type: application/zip
   
   build_on_win:
     runs-on: windows-2016
