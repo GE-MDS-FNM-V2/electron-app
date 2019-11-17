@@ -5,17 +5,12 @@ jobs:
     runs-on: macOS-latest
     steps:
     - uses: actions/checkout@master
-      with:
-        ref: electron
     - uses: actions/setup-node@master
       with:
         node-version: 10.16
     - name: Install dependencies
       run: yarn install
     - name: Build on MacOS
-      env:
-        ELECTRON: true
-        APP_VERSION_NUMBER: 0.5.9
       run: yarn build
     - uses: lucyio/upload-to-release@master
       with:
@@ -28,9 +23,7 @@ jobs:
   build_on_win:
     runs-on: windows-2016
     steps:
-    - uses: actions/checkout@master
-      with:
-        ref: feature/github-actions        
+    - uses: actions/checkout@master   
     - uses: actions/setup-node@master
       with:
         node-version: 10.16
