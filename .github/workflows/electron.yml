@@ -57,7 +57,7 @@ jobs:
       run: yarn build
     - name: Zip up artifacts
       run: |
-        zip -r my-artifact dist
+        Compress-Archive -Path dist -DestinationPath my-artifact.zip
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1.0.0
