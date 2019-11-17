@@ -55,6 +55,9 @@ jobs:
       run: yarn install
     - name: Build on Windows
       run: yarn build
+    - name: Zip up artifacts
+      run: |
+        zip -r my-artifact dist
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1.0.0
