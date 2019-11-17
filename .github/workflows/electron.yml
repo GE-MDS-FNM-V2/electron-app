@@ -19,11 +19,11 @@ jobs:
       run: yarn build
     - uses: lucyio/upload-to-release@master
       with:
-        name: lucyio/electron
+        name: GE-MDS-FNM-V2/backend
         path: ./dist
         action: unpublished
         release_id: 0.x.x
-        release-repo: lucyio/electron
+        release-repo: GE-MDS-FNM-V2/backend
   
   build_on_win:
     runs-on: windows-2016
@@ -46,27 +46,12 @@ jobs:
       run: set path=%path%;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin
     - name: Install dependencies
       run: yarn install
-    - name: check env
-      env:
-        ELECTRON: true
-        APP_VERSION_NUMBER: 0.5.9
-      run: set
     - name: Build on Windows
-      env:
-        ELECTRON: true
-        APP_VERSION_NUMBER: 0.5.9
       run: yarn build
-    - name: Build Electron
-      env:
-        ELECTRON: true
-        APP_VERSION_NUMBER: 0.5.9
-      run: yarn electron:buildWin
-    - name: see directory
-      run: ls ./electron_dist/squirrel-windows
     - uses: lucyio/upload-to-release@master
       with:
-        name: lucyio/electron
-        path: ./electron_dist/squirrel-windows
+        name: GE-MDS-FNM-V2/backend
+        path: ./dist
         action: unpublished
         release_id: 0.5.9
-        release-repo: lucyio/electron
+        release-repo: GE-MDS-FNM-V2/backend
