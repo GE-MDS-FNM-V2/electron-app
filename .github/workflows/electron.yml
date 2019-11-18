@@ -21,8 +21,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}-mac-latest
-        release_name: Release ${{ github.ref }}-mac-latest
+        tag_name: ${{ github.ref }}-mac-$GITHUB_SHA
+        release_name: Release ${{ github.ref }}-mac-$GITHUB_SHA
         draft: false
         prerelease: false
     - name: Upload Release Asset
@@ -64,8 +64,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}-windows-${{ github.GITHUB_SHA }}
-        release_name: Release ${{ github.ref }}-windows-latest
+        tag_name: ${{ github.ref }}-windows-$GITHUB_SHA
+        release_name: Release ${{ github.ref }}-windows-$GITHUB_SHA
         draft: false
         prerelease: false
     - name: Upload Release Asset
