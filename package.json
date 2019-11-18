@@ -1,20 +1,27 @@
 {
   "name": "ge-backend",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "main": "src/index.js",
   "repository": "https://github.com/GE-MDS-FNM-V2/backend.git",
   "author": " ",
   "license": "MIT",
   "devDependencies": {
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "commitizen": "^4.0.3",
     "electron": "^7.1.1",
     "electron-packager": "^14.1.0",
     "electron-rebuild": "^1.8.6",
-    "shelljs": "^0.8.3"
+    "husky": "^3.0.9",
+    "shelljs": "^0.8.3",
+    "standard-version": "^7.0.0"
   },
   "scripts": {
     "build": "yarn electron-rebuild && yarn build:clone-frontend && yarn electron-packager . --asar --out dist",
     "start": "yarn electron-rebuild && electron .",
-    "build:clone-frontend": "node scripts/cloneFrontend.js"
+    "build:clone-frontend": "node scripts/cloneFrontend.js",
+    "release": "standard-version",
+    "commit": "git-cz"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -27,5 +34,26 @@
       "src/**/*",
       "node_modules/**/*"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E  HUSKY_GIT_PARAMS",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "subject-case": [
+        2,
+        "never",
+        [
+          "start-case",
+          "pascal-case"
+        ]
+      ]
+    }
   }
 }
