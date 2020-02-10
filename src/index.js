@@ -5,6 +5,7 @@ const isDev = require("electron-is-dev");
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
 
+// TODO - trigger release - remove me
 function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
