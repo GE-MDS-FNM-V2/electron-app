@@ -21,8 +21,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}-mac-${{ github.sha }}
-        release_name: Release ${{ github.ref }}-mac-${{ github.sha }}
+        tag_name: ${{ github.ref }}-ubuntu-${{ github.sha }}
+        release_name: Release ${{ github.ref }}-ubuntu-${{ github.sha }}
         draft: false
         prerelease: false
     - name: Upload Release Asset
