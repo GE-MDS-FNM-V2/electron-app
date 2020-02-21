@@ -11,7 +11,7 @@ describe('Testing /remoteExecute endpoint', () => {
         });
         jest.mock('@ge-fnm/csm', () => {
             return {
-                executeCommunication: () => Promise.resolve('hello')
+                executeCommunication: () => Promise.resolve("success")
             };
         });
         const app = require('../app');
@@ -20,7 +20,7 @@ describe('Testing /remoteExecute endpoint', () => {
             .send({serializedAction: "any string"})
             .then(res => {
                 expect(res.status).toBe(200)
-                expect(res.body.data).toBe("hello")
+                expect(res.body.data).toBe("success")
             });
     });
 
@@ -41,6 +41,27 @@ describe('Testing /remoteExecute endpoint', () => {
             .then(res => {
                 expect(res.status).toBe(500)
             })
+    });
+
+    test('with no serializedAction parameter returns a 400 error', () => {
+        const request = require('supertest');
+        jest.mock('electron-is-dev', () => {
+            return true
+        });
+        jest.mock('@ge-fnm/csm', () => {
+            return {
+                executeCommunication: () => Promise.resolve('hello')
+            };
+        });
+        const app = require('../app');
+        const { MISSING_ACTION_OBJ_MSG } = require('../constants/errorMessages')
+        return request(app)
+            .post('/remoteExecute')
+            .send({data: "any string"})
+            .then(res => {
+                expect(res.status).toBe(400)
+                expect(res.body.error).toBe(MISSING_ACTION_OBJ_MSG)
+            });
     });
 
     afterAll(() => {
