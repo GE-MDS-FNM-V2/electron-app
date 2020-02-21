@@ -10,14 +10,38 @@
     "electron-packager": "^14.1.0",
     "electron-rebuild": "^1.8.6",
     "husky": "^3.0.9",
-    "shelljs": "^0.8.3"
+    "jest": "^25.1.0",
+    "shelljs": "^0.8.3",
+    "supertest": "^4.0.2"
   },
   "scripts": {
     "build": "yarn electron-rebuild && yarn build:clone-frontend && yarn electron-packager . --asar --out dist",
     "start": "yarn electron-rebuild && electron .",
+    "test": "jest",
     "build:clone-frontend": "node scripts/cloneFrontend.js"
   },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/build/",
+      "/ge-backend-*/",
+      "/scripts/",
+      "/src/compiled-frontend/",
+      "/src/utils/",
+      "/src/constants.js",
+      "/src/index.js"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/build/"
+    ]
+  },
   "dependencies": {
+    "@ge-fnm/action-object": "^4.0.0",
+    "@ge-fnm/csm": "^1.1.0",
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "electron-is-dev": "^1.1.0",
     "express": "^4.17.1",

@@ -1,5 +1,5 @@
 const { app, BrowserWindow } = require("electron");
-const { PORT, EXPRESS_PORT, IN_ELECTRON_STRING } = require("./constants");
+const { PORT, EXPRESS_PORT, IN_ELECTRON_STRING } = require("./constants/constants");
 const isDev = require("electron-is-dev");
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
