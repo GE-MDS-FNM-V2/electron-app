@@ -51,8 +51,8 @@ app.post('/remoteExecute', (req, res) => {
   } else {
     // pass string along to CSM, let CSM handle success/error logic
     executeCommunication(serializedActionObject)
-        .then(data => res.json({data: data}))
-        .catch(err => res.status(500).json({error: err}));
+        .then(data => res.json(data))
+        .catch(err => res.status(500).json(err));
   }
 });
 

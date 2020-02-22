@@ -20,7 +20,8 @@ describe('Testing /remoteExecute endpoint', () => {
             .send({serializedAction: "any string"})
             .then(res => {
                 expect(res.status).toBe(200)
-                expect(res.body.data).toBe("success")
+                // NOTE: axios response will have a .data key instead of .body
+                expect(res.body).toBe("success")
             });
     });
 
