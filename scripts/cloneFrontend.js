@@ -9,6 +9,7 @@ const projectDirectory = process.cwd()
 const frontendDirectoryName = "/tmp/.ge-fnm-react-app"
 
 shell.rm("-rf", frontendDirectoryName)
+shell.mkdir("/tmp")
 shell.mkdir(frontendDirectoryName)
 shell.cd(frontendDirectoryName)
 shell.exec(`git clone -b ${frontendBranch} ${frontendUrl}`)
