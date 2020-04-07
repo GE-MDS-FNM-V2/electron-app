@@ -38,9 +38,9 @@
     ]
   },
   "dependencies": {
-    "@ge-fnm/action-object": "^4.0.0",
-    "@ge-fnm/csm": "^1.1.1",
-    "@ge-fnm/perform-action-module": "^1.2.2",
+    "@ge-fnm/action-object": "^4.5.0",
+    "@ge-fnm/csm": "^1.4.0-next.2",
+    "@ge-fnm/perform-action-module": "^1.4.0-next.3",
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
