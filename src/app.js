@@ -47,12 +47,15 @@ app.post('/remoteExecute', (req, res) => {
   // get the serialized action object string from the post request body
   const serializedActionObject = req.body.serializedAction;
   if (!serializedActionObject) {
-      res.status(400).json({error: MISSING_ACTION_OBJ_MSG});
+      res.status(400).json({error: MISSING_ACTION_OBJ_MSG}); // TODO - fix this
   } else {
     // pass string along to CSM, let CSM handle success/error logic
     executeCommunication(serializedActionObject)
         .then(data => res.json(data))
-        .catch(err => res.status(500).json(err));
+        .catch(err => {
+          console.log('/remoteExecute CSM error', err)
+          res.status(500).json(err)
+        });
   }
 });
 
