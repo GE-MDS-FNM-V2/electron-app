@@ -16,6 +16,13 @@ yarn
 yarn build
 ```
 
+### Building for QA
+Pushing any branch to `origin` will fire off building a downloadable version of the
+application for Linux, Windows, and Mac. These are created using [GitHub Actions](https://github.com/GE-MDS-FNM-V2/electron-app/actions). The packages can be found in the [releases](https://github.com/GE-MDS-FNM-V2/electron-app/releases) tab. The commit hash acts as the unique identifier for builds.
+
+By default, the desktop application's user interface is made with the latest on `master` from the [react-ui](https://github.com/GE-MDS-FNM-V2/react-ui) repo. If you need to pull the latest from a different branch, 
+you will need to modify the `FRONTEND_DEPLOYMENT_BRANCH` environment variable in the `.env` file to match the branch you want to pull from.
+
 ## Overview of development mode vs production mode
 ### Production
 During the production build, we will run `node.js scripts/cloneFrontend` that 
