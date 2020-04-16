@@ -23,6 +23,31 @@ application for Linux, Windows, and Mac. These are created using [GitHub Actions
 By default, the desktop application's user interface is made with the latest on `master` from the [react-ui](https://github.com/GE-MDS-FNM-V2/react-ui) repo. If you need to pull the latest from a different branch, 
 you will need to modify the `FRONTEND_DEPLOYMENT_BRANCH` environment variable in the `.env` file to match the branch you want to pull from.
 
+## Loading a Radio Configuration
+
+In order to connect to radios with the FNM you must load in the login information using a configuration file. You will 
+be prompted for this file when you open the application. The configuration must be a `.json` file. The radio must also 
+be on your local network, unless you have engineered a workaround solution to expose the radio otherwise. 
+
+Below are the contents of a sample configuration file that can be used to connect to a radio with an IP address of `98.10.43.107`,
+over `HTTP`, using `JSONRPC`, and create a session for radio management. the `"communicationMethod"` and `"protocol"` key/value pairs
+must have values that are present in the `CommunicationMethodV1` and `ProtocolV1` enum objects, as defined in the [GE Action Object module](https://github.com/GE-MDS-FNM-V2/action-object).
+
+```json
+{
+  "devices": [
+    {
+	"communicationMethod": "HTTP",
+      "uri": "98.10.43.107",
+      "protocol": "JSONRPC",
+      "username": "admin",
+      "password": "AdminPassword",
+      "id": "1"
+    }
+  ]
+}
+```
+
 ## Overview of development mode vs production mode
 ### Production
 During the production build, we will run `node.js scripts/cloneFrontend` that 
